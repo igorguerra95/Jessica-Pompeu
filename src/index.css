@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+:root {
+  --background: 40 20% 97%;
+  --foreground: 222 47% 11%;
+
+  --surface: 40 14% 94%;
+  --surface-elevated: 40 25% 99%;
+  --card: 40 25% 99%;
+  --card-foreground: 222 47% 11%;
+
+  --primary: 222 47% 11%;
+  --primary-foreground: 40 20% 97%;
+
+  --secondary: 46 65% 52%;
+  --secondary-foreground: 222 47% 11%;
+
+  --accent: 46 65% 52%;
+  --accent-foreground: 222 47% 11%;
+  --accent-soft: 46 48% 90%;
+
+  --muted: 220 14% 91%;
+  --muted-foreground: 220 20% 35%;
+
+  --border: 220 15% 85%;
+  --border-subtle: 220 15% 90%;
+  --ring: 46 65% 44%;
+
+  --dark-canvas: 222 47% 11%;
+  --dark-surface: 222 42% 15%;
+  --dark-foreground: 40 20% 96%;
+  --dark-muted: 220 16% 74%;
+  --dark-border: 222 30% 22%;
+
+  --gradient-gold: linear-gradient(
+    135deg,
+    hsl(46 65% 52%) 0%,
+    hsl(44 74% 62%) 52%,
+    hsl(42 60% 45%) 100%
+  );
+  --gradient-obsidian: linear-gradient(
+    165deg,
+    hsl(222 47% 11%) 0%,
+    hsl(222 43% 15%) 100%
+  );
+  --gradient-limestone: linear-gradient(
+    180deg,
+    hsl(40 20% 97%) 0%,
+    hsl(40 16% 94%) 100%
+  );
+
+  --shadow-architectural:
+    0 24px 60px -16px hsl(222 47% 11% / 0.12),
+    0 4px 16px -4px hsl(222 47% 11% / 0.05);
+  --shadow-card:
+    0 12px 32px -12px hsl(222 47% 11% / 0.08),
+    0 2px 6px -1px hsl(222 47% 11% / 0.04);
+  --shadow-card-hover:
+    0 28px 64px -18px hsl(222 47% 11% / 0.16),
+    0 6px 18px -4px hsl(46 65% 52% / 0.16);
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-surface: hsl(var(--surface));
+  --color-surface-elevated: hsl(var(--surface-elevated));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-soft: hsl(var(--accent-soft));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-border: hsl(var(--border));
+  --color-border-subtle: hsl(var(--border-subtle));
+  --color-ring: hsl(var(--ring));
+  --color-dark-canvas: hsl(var(--dark-canvas));
+  --color-dark-surface: hsl(var(--dark-surface));
+  --color-dark-foreground: hsl(var(--dark-foreground));
+  --color-dark-muted: hsl(var(--dark-muted));
+  --color-dark-border: hsl(var(--dark-border));
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Lato", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: hsl(var(--secondary) / 0.28);
+    color: hsl(var(--foreground));
+  }
+}
+
+.architectural-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+.bg-gold-gradient {
+  background-image: var(--gradient-gold);
+}
+
+.bg-obsidian-gradient {
+  background-image: var(--gradient-obsidian);
+}
+
+.shadow-architectural {
+  box-shadow: var(--shadow-architectural);
+}
+
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-card-hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+@keyframes subtle-pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+  70% {
+    transform: scale(1.24);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.24);
+    opacity: 0;
+  }
+}
+
+.animate-whatsapp-pulse {
+  animation: subtle-pulse-ring 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-whatsapp-pulse {
+    animation: none;
+  }
+}
